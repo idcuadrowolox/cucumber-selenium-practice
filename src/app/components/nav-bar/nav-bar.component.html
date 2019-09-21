@@ -6,9 +6,7 @@
   </ul>
   <ul class="nav-bar-account">
     <li class="nav-bar-item">
-      <ng-template #username>
-        <span class="username"><i>Usuario: {{ userLogged }}</i></span>
-      </ng-template>
+      <span class="username">{{ userLogged }}</span>
     </li>
     <li class="nav-bar-item">
       <a class="nav-bar-link" (click)="onLogout()">Cerrar Sesión</a>

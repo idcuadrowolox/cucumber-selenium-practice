@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
 export const LOGIN_ERRORS = {
   username: {
@@ -13,7 +13,7 @@ export const LOGIN_ERRORS = {
   password: {
     maxlength: 'La contraseña debe contener entre 8 y 14 caracteres',
     minlength: 'La contraseña debe contener entre 8 y 14 caracteres',
-    required: 'La contraseña requerida',
+    required: 'La contraseña es requerida',
   }
 };
 
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private localStorage: LocalStorageService
+    private authService: AuthenticationService
   ) {
     this.formBuilder = new FormBuilder();
   }
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      this.localStorage.setValue(this.localStorage.SESSION_TOKEN, this.loginForm.value);
+      this.authService.login(this.loginForm.value);
       this.router.navigateByUrl('/home');
     }
   }

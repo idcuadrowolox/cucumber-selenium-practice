@@ -8,6 +8,10 @@ export class AuthenticationService {
 
   constructor(private localStorageService: LocalStorageService) { }
 
+  login(data) {
+    this.localStorageService.setValue(this.localStorageService.SESSION_TOKEN, data);
+  }
+
   getToken() {
     return this.localStorageService.getValue(this.localStorageService.SESSION_TOKEN);
   }

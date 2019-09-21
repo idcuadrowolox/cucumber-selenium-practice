@@ -23,6 +23,7 @@ export class NavBarComponent {
     private router: Router,
   ) {
     this.userLogged = this.authService.getUser();
+    console.log(this.userLogged);
   }
 
   onLogout() {
